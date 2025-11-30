@@ -1,7 +1,9 @@
 package main
 
 import (
+	"code"
 	"context"
+	"fmt"
 	"github.com/urfave/cli/v3"
 	"log"
 	"os"
@@ -19,6 +21,29 @@ func main() {
 				Value:   "stylish",
 				Usage:   "output format",
 			},
+		},
+		Action: func(ctx context.Context, command *cli.Command) error {
+			if command.Args().Len() != 2 {
+				return fmt.Errorf("need two files")
+			}
+
+			file1 := command.Args().Get(0)
+			file2 := command.Args().Get(1)
+			format := command.String("format")
+
+			_ = format
+
+			_, err := code.ParseFile(file1)
+			if err != nil {
+				return err
+			}
+
+			_, err = code.ParseFile(file2)
+			if err != nil {
+				return err
+			}
+
+			return nil
 		},
 	}
 
