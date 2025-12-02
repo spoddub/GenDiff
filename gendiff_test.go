@@ -33,3 +33,24 @@ func TestGenDiffFlatJSONStylish(t *testing.T) {
 
 	assert.Equal(t, expected, got, "diff result does not match expected output")
 }
+
+func TestGenDiffFlatYAMLStylish(t *testing.T) {
+	file1 := fixturePath("file1.yml")
+	file2 := fixturePath("file2.yml")
+	expectedPath := fixturePath("flat_stylish.txt")
+
+	got, err := GenDiff(file1, file2, "stylish")
+	if !assert.NoError(t, err, "GenDiff returned error for yaml") {
+		return
+	}
+
+	expectedBytes, err := os.ReadFile(expectedPath)
+	if !assert.NoError(t, err, "cannot read expected fixture") {
+		return
+	}
+
+	expected := strings.TrimSpace(string(expectedBytes))
+	got = strings.TrimSpace(got)
+
+	assert.Equal(t, expected, got, "yaml diff result does not match expected output")
+}

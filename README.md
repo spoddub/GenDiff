@@ -3,5 +3,10 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=spoddub_go-project-244&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=spoddub_go-project-244)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=spoddub_go-project-244&metric=coverage)](https://sonarcloud.io/summary/new_code?id=spoddub_go-project-244)
 
-### Usage
+## Usage
+
+### JSON
 [![asciicast](https://asciinema.org/a/ED1LgcMKgIjeZNoC0kSr4mdvX.svg)](https://asciinema.org/a/ED1LgcMKgIjeZNoC0kSr4mdvX)
+
+### YAML
+[![asciicast](https://asciinema.org/a/lPdBOanNE9YdF9XPowSVOzSml.svg)](https://asciinema.org/a/lPdBOanNE9YdF9XPowSVOzSml)

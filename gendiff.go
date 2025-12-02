@@ -5,6 +5,8 @@ import (
 	"reflect"
 	"sort"
 	"strings"
+
+	"code/parsers"
 )
 
 func formatLine(sign rune, key string, value any) string {
@@ -23,11 +25,11 @@ func formatLine(sign rune, key string, value any) string {
 }
 
 func GenDiff(path1, path2, format string) (string, error) {
-	data1, err := ParseFile(path1)
+	data1, err := parsers.Parse(path1)
 	if err != nil {
 		return "", err
 	}
-	data2, err := ParseFile(path2)
+	data2, err := parsers.Parse(path2)
 	if err != nil {
 		return "", err
 	}
