@@ -38,8 +38,8 @@ It supports nested structures and multiple output formats:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/spoddub/go-project-244.git
-cd go-project-244
+git clone https://github.com/spoddub/GenDiff.git
+cd GenDiff
 ```
 
 ### Build
