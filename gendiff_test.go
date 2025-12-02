@@ -5,6 +5,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func fixturePath(filename string) string {
@@ -17,19 +19,17 @@ func TestGenDiffFlatJSONStylish(t *testing.T) {
 	expectedPath := fixturePath("flat_stylish.txt")
 
 	got, err := GenDiff(file1, file2, "stylish")
-	if err != nil {
-		t.Fatalf("GenDiff returned error: %v", err)
+	if !assert.NoError(t, err, "GenDiff returned error") {
+		return
 	}
 
 	expectedBytes, err := os.ReadFile(expectedPath)
-	if err != nil {
-		t.Fatalf("cannot read expected fixture: %v", err)
+	if !assert.NoError(t, err, "cannot read expected fixture") {
+		return
 	}
 
 	expected := strings.TrimSpace(string(expectedBytes))
 	got = strings.TrimSpace(got)
 
-	if got != expected {
-		t.Fatalf("unexpected diff result\nGot:\n%q\n\nExpected:\n%q", got, expected)
-	}
+	assert.Equal(t, expected, got, "diff result does not match expected output")
 }
