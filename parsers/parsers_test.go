@@ -21,10 +21,24 @@ func TestParseJSON(t *testing.T) {
 	}
 
 	if assert.NotNil(t, data) {
-		assert.Equal(t, "hexlet.io", data["host"])
-		assert.EqualValues(t, 50, data["timeout"])
-		assert.Equal(t, "123.234.53.22", data["proxy"])
-		assert.Equal(t, false, data["follow"])
+		assert.Contains(t, data, "common")
+		assert.Contains(t, data, "group1")
+		assert.Contains(t, data, "group2")
+	}
+
+	common, ok := data["common"].(map[string]any)
+	if assert.True(t, ok, "common should be an object") {
+		assert.Equal(t, "Value 1", common["setting1"])
+		assert.EqualValues(t, 200, common["setting2"])
+		assert.Equal(t, true, common["setting3"])
+	}
+
+	group2, ok := data["group2"].(map[string]any)
+	if assert.True(t, ok, "group2 should be an object") {
+		deep, ok := group2["deep"].(map[string]any)
+		if assert.True(t, ok, "group2.deep should be an object") {
+			assert.EqualValues(t, 45, deep["id"])
+		}
 	}
 }
 
@@ -37,10 +51,24 @@ func TestParseYAML(t *testing.T) {
 	}
 
 	if assert.NotNil(t, data) {
-		assert.Equal(t, "hexlet.io", data["host"])
-		assert.EqualValues(t, 50, data["timeout"])
-		assert.Equal(t, "123.234.53.22", data["proxy"])
-		assert.Equal(t, false, data["follow"])
+		assert.Contains(t, data, "common")
+		assert.Contains(t, data, "group1")
+		assert.Contains(t, data, "group2")
+	}
+
+	common, ok := data["common"].(map[string]any)
+	if assert.True(t, ok, "common should be an object") {
+		assert.Equal(t, "Value 1", common["setting1"])
+		assert.EqualValues(t, 200, common["setting2"])
+		assert.Equal(t, true, common["setting3"])
+	}
+
+	group2, ok := data["group2"].(map[string]any)
+	if assert.True(t, ok, "group2 should be an object") {
+		deep, ok := group2["deep"].(map[string]any)
+		if assert.True(t, ok, "group2.deep should be an object") {
+			assert.EqualValues(t, 45, deep["id"])
+		}
 	}
 }
 

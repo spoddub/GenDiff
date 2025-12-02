@@ -13,13 +13,13 @@ func fixturePath(filename string) string {
 	return filepath.Join("testdata", "fixture", filename)
 }
 
-func TestGenDiffFlatJSONStylish(t *testing.T) {
+func TestGenDiffNestedJSONStylish(t *testing.T) {
 	file1 := fixturePath("file1.json")
 	file2 := fixturePath("file2.json")
-	expectedPath := fixturePath("flat_stylish.txt")
+	expectedPath := fixturePath("nested_stylish.txt")
 
 	got, err := GenDiff(file1, file2, "stylish")
-	if !assert.NoError(t, err, "GenDiff returned error") {
+	if !assert.NoError(t, err, "GenDiff returned error for json") {
 		return
 	}
 
@@ -31,13 +31,13 @@ func TestGenDiffFlatJSONStylish(t *testing.T) {
 	expected := strings.TrimSpace(string(expectedBytes))
 	got = strings.TrimSpace(got)
 
-	assert.Equal(t, expected, got, "diff result does not match expected output")
+	assert.Equal(t, expected, got)
 }
 
-func TestGenDiffFlatYAMLStylish(t *testing.T) {
+func TestGenDiffNestedYAMLStylish(t *testing.T) {
 	file1 := fixturePath("file1.yml")
 	file2 := fixturePath("file2.yml")
-	expectedPath := fixturePath("flat_stylish.txt")
+	expectedPath := fixturePath("nested_stylish.txt")
 
 	got, err := GenDiff(file1, file2, "stylish")
 	if !assert.NoError(t, err, "GenDiff returned error for yaml") {
@@ -52,5 +52,5 @@ func TestGenDiffFlatYAMLStylish(t *testing.T) {
 	expected := strings.TrimSpace(string(expectedBytes))
 	got = strings.TrimSpace(got)
 
-	assert.Equal(t, expected, got, "yaml diff result does not match expected output")
+	assert.Equal(t, expected, got)
 }
